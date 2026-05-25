@@ -1,0 +1,58 @@
+{
+  "name": {
+    "en": "Sand Battery"
+  },
+  "class": "other",
+  "capabilities": [
+    "measure_battery",
+    "energy_stored",
+    "heat_mode",
+    "measure_temperature.sand_bot",
+    "measure_temperature.sand_mid",
+    "measure_temperature.sand_top",
+    "measure_temperature.air_out",
+    "measure_temperature.air_in",
+    "measure_temperature.water",
+    "safety_alarm",
+    "charge_blocked"
+  ],
+  "capabilitiesOptions": {
+    "measure_battery":             { "title": { "en": "Charge Level" } },
+    "energy_stored":               { "title": { "en": "Stored Energy" }, "decimals": 1 },
+    "measure_temperature.sand_bot":    { "title": { "en": "Sand Bottom" },       "decimals": 0 },
+    "measure_temperature.sand_mid":    { "title": { "en": "Sand Middle" },       "decimals": 0 },
+    "measure_temperature.sand_top":    { "title": { "en": "Sand Top" },          "decimals": 0 },
+    "measure_temperature.air_out":     { "title": { "en": "Air Outlet" },        "decimals": 0 },
+    "measure_temperature.air_in":      { "title": { "en": "Air Inlet" },         "decimals": 0 },
+    "measure_temperature.water":       { "title": { "en": "Water / HEX" },       "decimals": 0 },
+    "safety_alarm":                    { "title": { "en": "Safety Alarm" } },
+    "charge_blocked":                  { "title": { "en": "Charge Blocked" } }
+  },
+  "settings": [
+    {
+      "id": "address",
+      "type": "text",
+      "label": { "en": "IP Address or hostname" },
+      "value": "zandbatterij.local",
+      "hint": { "en": "IP address or mDNS hostname of the sand battery controller" }
+    },
+    {
+      "id": "api_key",
+      "type": "text",
+      "label": { "en": "API Key" },
+      "value": "",
+      "hint": { "en": "X-API-Key configured in the device firmware (menuconfig)" }
+    },
+    {
+      "id": "poll_interval",
+      "type": "number",
+      "label": { "en": "Poll Interval (seconds)" },
+      "value": 10,
+      "attr": { "min": 5, "max": 60, "step": 1 }
+    }
+  ],
+  "pair": [
+    { "id": "list_devices", "template": "list_devices" },
+    { "id": "add_devices",  "template": "add_devices"  }
+  ]
+}

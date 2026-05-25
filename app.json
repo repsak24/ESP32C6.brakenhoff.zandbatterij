@@ -1,0 +1,237 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "ESP32C6.brakenhoff.zandbatterij",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "nl.zandbatterij"
+  },
+  "description": {
+    "en": "Integratie voor custom zandbatterij met ESP32-C6"
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "kasper Brakenhoff",
+    "email": "kabrakenhoff@gmail.com"
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Sand Battery"
+      },
+      "class": "other",
+      "capabilities": [
+        "measure_battery",
+        "energy_stored",
+        "heat_mode",
+        "measure_temperature.sand_bot",
+        "measure_temperature.sand_mid",
+        "measure_temperature.sand_top",
+        "measure_temperature.air_out",
+        "measure_temperature.air_in",
+        "measure_temperature.water",
+        "safety_alarm",
+        "charge_blocked"
+      ],
+      "capabilitiesOptions": {
+        "measure_battery": {
+          "title": {
+            "en": "Charge Level"
+          }
+        },
+        "energy_stored": {
+          "title": {
+            "en": "Stored Energy"
+          },
+          "decimals": 1
+        },
+        "measure_temperature.sand_bot": {
+          "title": {
+            "en": "Sand Bottom"
+          },
+          "decimals": 0
+        },
+        "measure_temperature.sand_mid": {
+          "title": {
+            "en": "Sand Middle"
+          },
+          "decimals": 0
+        },
+        "measure_temperature.sand_top": {
+          "title": {
+            "en": "Sand Top"
+          },
+          "decimals": 0
+        },
+        "measure_temperature.air_out": {
+          "title": {
+            "en": "Air Outlet"
+          },
+          "decimals": 0
+        },
+        "measure_temperature.air_in": {
+          "title": {
+            "en": "Air Inlet"
+          },
+          "decimals": 0
+        },
+        "measure_temperature.water": {
+          "title": {
+            "en": "Water / HEX"
+          },
+          "decimals": 0
+        },
+        "safety_alarm": {
+          "title": {
+            "en": "Safety Alarm"
+          }
+        },
+        "charge_blocked": {
+          "title": {
+            "en": "Charge Blocked"
+          }
+        }
+      },
+      "settings": [
+        {
+          "id": "address",
+          "type": "text",
+          "label": {
+            "en": "IP Address or hostname"
+          },
+          "value": "zandbatterij.local",
+          "hint": {
+            "en": "IP address or mDNS hostname of the sand battery controller"
+          }
+        },
+        {
+          "id": "api_key",
+          "type": "text",
+          "label": {
+            "en": "API Key"
+          },
+          "value": "",
+          "hint": {
+            "en": "X-API-Key configured in the device firmware (menuconfig)"
+          }
+        },
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Poll Interval (seconds)"
+          },
+          "value": 10,
+          "attr": {
+            "min": 5,
+            "max": 60,
+            "step": 1
+          }
+        }
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices"
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "zandbatterij"
+    }
+  ],
+  "capabilities": {
+    "charge_blocked": {
+      "title": {
+        "en": "Charge Blocked"
+      },
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "energy_stored": {
+      "title": {
+        "en": "Stored Energy"
+      },
+      "type": "number",
+      "units": "kWh",
+      "min": 0,
+      "max": 80,
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "heat_level": {
+      "title": {
+        "en": "Charge Level"
+      },
+      "type": "number",
+      "units": "%",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "heat_mode": {
+      "title": {
+        "en": "Mode"
+      },
+      "type": "enum",
+      "values": [
+        {
+          "id": "idle",
+          "title": {
+            "en": "Idle"
+          }
+        },
+        {
+          "id": "charging",
+          "title": {
+            "en": "Charging"
+          }
+        },
+        {
+          "id": "recuperating",
+          "title": {
+            "en": "Recup."
+          }
+        }
+      ],
+      "setable": true,
+      "getable": true,
+      "uiComponent": "picker"
+    },
+    "safety_alarm": {
+      "title": {
+        "en": "Safety Alarm"
+      },
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    }
+  }
+}

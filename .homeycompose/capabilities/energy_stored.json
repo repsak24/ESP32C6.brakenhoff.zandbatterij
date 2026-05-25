@@ -1,0 +1,12 @@
+{
+  "title": { "en": "Stored Energy" },
+  "type": "number",
+  "units": "kWh",
+  "min": 0,
+  "max": 80,
+  "decimals": 1,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true
+}

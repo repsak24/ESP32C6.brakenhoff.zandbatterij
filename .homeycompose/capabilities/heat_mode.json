@@ -1,0 +1,14 @@
+{
+  "title": {
+    "en": "Mode"
+  },
+  "type": "enum",
+  "values": [
+    { "id": "idle",         "title": { "en": "Idle" } },
+    { "id": "charging",     "title": { "en": "Charging" } },
+    { "id": "recuperating", "title": { "en": "Recup." } }
+  ],
+  "setable": true,
+  "getable": true,
+  "uiComponent": "picker"
+}

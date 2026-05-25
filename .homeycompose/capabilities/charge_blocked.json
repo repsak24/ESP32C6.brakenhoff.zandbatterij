@@ -1,0 +1,8 @@
+{
+  "title": { "en": "Charge Blocked" },
+  "type": "boolean",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true
+}

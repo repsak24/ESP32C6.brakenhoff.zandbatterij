@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Vessel body -->
+  <rect x="18" y="12" width="64" height="72" rx="8" fill="none" stroke="#d97706" stroke-width="4"/>
+  <!-- Fill level background -->
+  <rect x="22" y="16" width="56" height="64" rx="5" fill="#1f2937"/>
+  <!-- Heat gradient fill (top = hottest) -->
+  <rect x="22" y="16" width="56" height="20" rx="3" fill="#ef4444" opacity="0.85"/>
+  <rect x="22" y="36" width="56" height="22" rx="0" fill="#f97316" opacity="0.75"/>
+  <rect x="22" y="58" width="56" height="22" rx="0" fill="#fbbf24" opacity="0.65"/>
+  <!-- Pipe top -->
+  <line x1="50" y1="12" x2="50" y2="4" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
+  <!-- Pipe bottom -->
+  <line x1="50" y1="84" x2="50" y2="96" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
+  <!-- Flame -->
+  <path d="M43,55 Q45,48 50,45 Q48,51 53,48 Q55,42 59,40 Q56,47 57,52 Q59,45 62,42 Q64,50 59,56 Q57,61 50,61 Q43,61 43,55Z" fill="#f97316"/>
+</svg>

@@ -1,0 +1,8 @@
+{
+  "title": { "en": "Safety Alarm" },
+  "type": "boolean",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true
+}
