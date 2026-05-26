@@ -4,24 +4,84 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 40px 16px;
-      background: #f5f5f5;
-      text-align: center;
-    }
-    p { color: #666; font-size: 0.9em; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+           margin: 0; padding: 32px 20px; background: #f5f5f5; }
+    h2 { margin: 0 0 6px; font-size: 1.1em; }
+    p  { color: #666; font-size: 0.88em; margin: 0 0 20px; }
+    .status { font-size: 0.85em; color: #888; margin-bottom: 16px; }
+    .found  { color: #2e7d32; font-weight: 600; }
+    .notfound { color: #c62828; }
+    label { display: block; font-size: 0.85em; color: #444; margin-bottom: 4px; }
+    input { width: 100%; padding: 9px 10px; border: 1px solid #ccc;
+            border-radius: 6px; font-size: 0.95em; margin-bottom: 14px; }
+    button { width: 100%; padding: 11px; background: #e84040; color: #fff;
+             border: none; border-radius: 6px; font-size: 0.95em; cursor: pointer; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .error { color: #c62828; font-size: 0.85em; margin-top: 8px; display: none; }
   </style>
 </head>
 <body>
-  <p>Adding Sand Battery…</p>
+  <h2>Connect Sand Battery</h2>
+  <p>Make sure the device is powered on and connected to your network.</p>
+
+  <div class="status" id="status">Searching for device on network…</div>
+
+  <label for="username">Username</label>
+  <input id="username" type="text" value="admin" autocomplete="username">
+
+  <label for="password">Password</label>
+  <input id="password" type="password" autocomplete="current-password">
+
+  <button id="btn" onclick="login()" disabled>Connect</button>
+  <div class="error" id="error"></div>
+
   <script>
-    Homey.ready(function() {
-      Homey.emit('addDevice', null, function(err) {
-        if (err) return Homey.alert(err.message || String(err));
+    function setStatus(msg, ok) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + (ok === true ? 'found' : ok === false ? 'notfound' : '');
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('error');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    function hideError() {
+      document.getElementById('error').style.display = 'none';
+    }
+
+    Homey.ready(function () {
+      Homey.emit('discover', null, function (err, results) {
+        if (err || !results || results.length === 0) {
+          setStatus('No device found. Check power and network.', false);
+          return;
+        }
+        setStatus('Found: ' + results[0].address, true);
+        document.getElementById('btn').disabled = false;
       });
     });
+
+    function login() {
+      hideError();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('btn');
+      btn.disabled = true;
+      btn.textContent = 'Connecting…';
+
+      Homey.emit('login', { username, password }, function (err) {
+        if (err) {
+          showError(err.message || String(err));
+          btn.disabled = false;
+          btn.textContent = 'Connect';
+          return;
+        }
+        Homey.nextView();
+      });
+    }
   </script>
 </body>
 </html>

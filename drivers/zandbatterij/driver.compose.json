@@ -3,6 +3,7 @@
     "en": "Sand Battery"
   },
   "class": "other",
+  "discovery": "zandbatterij",
   "capabilities": [
     "measure_battery",
     "energy_stored",
@@ -30,18 +31,16 @@
   },
   "settings": [
     {
-      "id": "address",
+      "id": "username",
       "type": "text",
-      "label": { "en": "IP Address or hostname" },
-      "value": "zandbatterij.local",
-      "hint": { "en": "IP address or mDNS hostname of the sand battery controller" }
+      "label": { "en": "Username" },
+      "value": "admin"
     },
     {
-      "id": "api_key",
+      "id": "password",
       "type": "text",
-      "label": { "en": "API Key" },
-      "value": "",
-      "hint": { "en": "X-API-Key configured in the device firmware (menuconfig)" }
+      "label": { "en": "Password" },
+      "value": ""
     },
     {
       "id": "poll_interval",
@@ -52,7 +51,7 @@
     }
   ],
   "pair": [
-    { "id": "list_devices", "template": "list_devices" },
-    { "id": "add_devices",  "template": "add_devices"  }
+    { "id": "start" },
+    { "id": "add_devices", "template": "add_devices" }
   ]
 }
